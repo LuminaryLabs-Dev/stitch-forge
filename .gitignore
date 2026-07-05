@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.DS_Store
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
