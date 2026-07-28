@@ -19,3 +19,4 @@ Stitch Forge is a lightweight procedural crochet-pattern studio for generating, 
 - Keep the app static and browser-local unless the architecture is intentionally revised.
 - Keep generated dependencies, build output, local configuration, and credentials out of Git.
 - Run `npm run verify:patterns` and `npm run build` before release.
+- Deploy GitHub Pages from `main` through `.github/workflows/deploy-pages.yml`; treat the local build, Actions result, and live site as separate release gates.
