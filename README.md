@@ -1,80 +1,86 @@
 # Stitch Forge
 
-Stitch Forge is a procedural crochet pattern generator for granny squares. This MVP focuses on one sellable design: the Retro Daisy Granny Square.
+![Stitch Forge pattern pipeline](docs/assets/brand/social-card.png)
 
-## Stack
+Stitch Forge is a browser-local procedural crochet-pattern studio for the Retro Daisy Granny Square. It normalizes recipe inputs, creates one structured pattern artifact, formats round-by-round instructions, and feeds the same artifact into a Three.js preview.
 
-- Vite
-- Vanilla JavaScript
-- Three.js with shader materials
-- Shared pattern artifact pipeline for validation, formatting, and rendering
+[Open the deployed studio](https://luminarylabs-dev.github.io/stitch-forge/)
 
-## What It Does
+## What it provides
 
-- Generates a Retro Daisy granny square pattern
-- Validates the Retro Daisy recipe before rendering or exporting
-- Renders the square in an interactive Three.js scene from the same computed pattern artifact used for export
-- Uses shader-driven visual shading for yarn softness, glow, and depth
-- Lets you edit colors, rounds, petal count, and visual intensity live
-- Lets you copy or download the pattern as text
+- Retro Daisy patterns with 3 through 8 rounds.
+- Recipe-safe petal layouts of 4, 8, 12, or 16 petals.
+- Center, petal, and border colors plus preview softness, glow, and depth controls.
+- One validated artifact shared by instructions, summaries, export, and preview parameters.
+- Clipboard copy and plain-text download from the browser.
+- Structural verification for default, boundary, and normalized-input scenarios.
 
-## Run It
+## Run locally
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the app:
-   ```bash
-   npm run dev
-   ```
-3. Open the local Vite URL shown in the terminal.
-4. Optional structural verification:
-   ```bash
-   npm run verify:patterns
-   ```
+```bash
+npm ci
+npm run dev
+```
 
-## Use It
+Open the local URL printed by Vite.
 
-- Click `Retro Daisy` to load the preset.
-- Adjust rounds, petal count, colors, softness, glow, and depth.
-- If a setting falls outside the supported Retro Daisy recipe, Stitch Forge normalizes it and shows a recipe note.
-- Rotate, pan, and zoom the preview with the mouse.
-- Read the generated pattern in the lower panel.
-- Click `Copy Pattern` or `Download .txt` to export it.
+## Verify and build
 
-## Preview Behavior
+```bash
+npm run verify:patterns
+npm run build
+```
 
-The preview is a live Three.js scene using `ShaderMaterial`. The renderer consumes the same computed pattern artifact as the export formatter, so round count, petal count, and border growth stay aligned with the generated instructions. The shader handles visual depth, yarn-like ridge detail, and glow.
+`verify:patterns` exercises four scenarios and checks round alignment, petal normalization, stitch totals, export content, and render-band bounds. The production build is emitted to the ignored `dist/` directory.
 
-## Export
+## Recipe constraints
 
-- `Copy Pattern` sends the current crochet instructions to the clipboard.
-- `Download .txt` saves the current pattern as a plain text file.
+| Input | Supported values |
+| --- | --- |
+| Rounds | 3 through 8 |
+| Petal count | 4, 8, 12, or 16 |
 
-## Supported Retro Daisy Inputs
+Unsupported values are normalized before pattern construction, formatting, rendering, or export. The interface reports normalization notes to the user.
 
-- Rounds: `3` to `8`
-- Petal counts: `4`, `8`, `12`, `16`
+## Architecture
 
-Unsupported values are normalized to the closest supported recipe-safe value.
+```text
+controls and preset
+  -> input normalization
+    -> structured pattern artifact
+      +-> formatted instructions and text export
+      `-> Three.js preview parameters
+```
 
-## Current Architecture
+| Path | Responsibility |
+| --- | --- |
+| `src/ui.js` | Controls, state, recipe notes, pattern display, and export actions. |
+| `src/generator.js` | Pattern-generation composition entry point. |
+| `src/validation.js` | Recipe-safe input normalization. |
+| `src/pattern-model.js` | Structured rounds, counts, materials, summaries, and render bands. |
+| `src/formatter.js` | On-screen and plain-text instructions. |
+| `src/renderer.js` | Three.js scene, shader preview, controls, and renderer lifecycle. |
+| `scripts/verify-patterns.mjs` | Four representative artifact checks. |
 
-- `src/ui.js`: editor shell, warning display, export actions
-- `src/generator.js`: build entrypoint for the computed pattern artifact
-- `src/validation.js`: input normalization and recipe safety rules
-- `src/pattern-model.js`: structured rounds, counts, render bands
-- `src/formatter.js`: on-screen and export formatting
-- `src/renderer.js`: Three.js preview from the computed artifact
-- `src/presets.js`: recipe defaults and constraints
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full boundary map.
 
-## Known Limitations
+## Current preview limitation
 
-- This MVP ships with one curated asset: Retro Daisy Granny Square.
-- Pattern sizing is approximate and intended for selling/use as a practical draft rather than a grading system.
-- Clipboard export depends on browser permissions.
-- Safari and Chromium should both be checked before final sale use.
+At the current `main` revision, `createRenderer()` measures its preview container before `createApp()` is attached to the document. The initial canvas is therefore `0 x 0` and can appear blank. A viewport resize invokes the renderer's resize handler and creates a non-zero drawing buffer, but initial visual rendering remains an open product defect. Pattern generation, text display, validation, and export are separate from that preview initialization path.
+
+This documentation cycle records the limitation but does not change application source.
+
+## Deployment
+
+GitHub Pages deploys from `main` through `.github/workflows/deploy-pages.yml`. Treat local verification, the Actions result, and the live site as three separate gates.
+
+## Documentation
+
+- [Documentation index](docs/README.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Operations](docs/OPERATIONS.md)
+- [Validation](docs/VALIDATION.md)
+- [Visual identity](docs/visual-identity.md)
 
 ## License
 
