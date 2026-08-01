@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-08-01T19:36:04.639686+00:00",
+  "project": "Stitch Forge",
+  "schemaVersion": "repo-image-pack.v1",
+  "settings": {
+    "backgroundColor": "#2B1A14",
+    "coverResizeMode": "contain-pad-no-crop",
+    "edgeContract": 1,
+    "keyColor": "#FF00FF",
+    "logoPosition": "top-center",
+    "logoSize": 220,
+    "opaqueThreshold": 220.0,
+    "primaryColor": "#0B6E49",
+    "sourceMode": "chroma",
+    "transparentThreshold": 12.0
+  },
+  "sha256": {
+    "cover-1280x640.png": "50c101c8dff3d16bdb37245c56b0aba824f7ceb899899d441ff9adb827043ccc",
+    "cover-source.png": "a36570476b8d16ec9b9030549c3c0fa8393aa69c2797b0841ecbd412289dea16",
+    "logo-1024.png": "6c07057773c72d6347c194674cde94f465cd0f6aa2c0ea660eb4b147a6d6c2dd",
+    "logo-256.png": "069fde4b8055c1717e0a2560a43496634e3119691518c84ea89cc9d3c9163340",
+    "logo-512.png": "f40440f1f2d531f89ee962cf9f07bea6ab3410beeff9bb670f0dedea58d0ad60",
+    "logo-mask.png": "470ea40daefbf6a0cfd0e32f983bb314f98372fc9cc157009c69ffb238dcfced",
+    "logo-mask.svg": "d4489eb39fec99f170f6cf67e8f5d81c6ff800606d01091f3292094b5928329b",
+    "logo-source.png": "da188e8524849474b02fdfd70a1ea6fe09766023000874750bedb9c4eb3bba78",
+    "logo-transparent.png": "b94a67eb1ecd579620bbe0505789081f071d3c46c7309211e30f80c41cce519d",
+    "social-card.png": "b324e33b65848c07a5c9f372b8c46f392668db435292775c631a40e9ec0360bf"
+  },
+  "source": {
+    "coverFilename": "exec-0bb82221-7b75-4a1f-9eac-0191f676a373.png",
+    "coverSha256": "6b97957e945041146c97ae1bef55646e4aef9a0d7ced6ac043323857fc4a30ba",
+    "logoFilename": "exec-56f9325e-9661-496f-99b1-21f42c364a92.png",
+    "logoSha256": "dae048efda426aaa022c776f28a10d7ff8989665dbb61a260803a7d16ea500ae"
+  },
+  "summary": "A browser-local studio that validates one crochet pattern artifact and keeps its instructions and preview aligned.",
+  "tools": {
+    "chromaHelper": {
+      "name": "imagegen/remove_chroma_key.py",
+      "sha256": "3f7b9b14ad5c90f37618bc1c16a039a2076abca12ddc41b3ae470e2b1cad6c0e"
+    },
+    "ffmpeg": "ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers",
+    "ffprobe": "ffprobe version 8.0.1 Copyright (c) 2007-2025 the FFmpeg developers"
+  },
+  "validation": {
+    "dimensions": {
+      "cover-1280x640.png": [
+        1280,
+        640
+      ],
+      "logo-1024.png": [
+        1024,
+        1024
+      ],
+      "logo-256.png": [
+        256,
+        256
+      ],
+      "logo-512.png": [
+        512,
+        512
+      ],
+      "logo-mask.png": [
+        1254,
+        1254
+      ],
+      "logo-source.png": [
+        1254,
+        1254
+      ],
+      "logo-transparent.png": [
+        1254,
+        1254
+      ],
+      "social-card.png": [
+        1280,
+        640
+      ]
+    },
+    "maskCoverage": 0.455496,
+    "status": "pass",
+    "transparentCornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
